@@ -1,0 +1,31 @@
+$categories: (
+ Q1: color($colors, primary),
+ Q2: #AC282B,
+ Q3: #8E8D93,
+ Q4: #FE4C52,
+ Q5: #FD8B2D,
+ Q6: #FED035,
+ Q7: #69BB7B,
+ Q8: #3BC7C4,
+ Q9: #B16BE3,
+ Q10: #66001C,
+ Q11: #0630CC,
+ Q12: #16009C,
+ QTD: #5678CC,
+ QTB: #6700CC,
+ QTP: #1444C1,
+ QBT: #2250CC,
+);
+
+@function auxiliary-categories() {
+  @return map-remove($categories);
+}
+
+page-schedule {
+  @each $track, $value in auxiliary-categories() {
+   ion-item-sliding[track=#{$track}] ion-label {
+     border-left: 2px solid $value;
+     padding-left: 10px;
+   }
+  }
+}

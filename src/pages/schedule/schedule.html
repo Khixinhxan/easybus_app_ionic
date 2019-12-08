@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        Tất cả
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Yêu thích
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar no-border-top>
+      <ion-buttons end> 
+          <button ion-button item-right (click)="startTranscribing()">
+            <ion-icon name="mic" >
+            </ion-icon>
+          </button> 
+        </ion-buttons>
+    <ion-searchbar color="primary"
+                   [(ngModel)]="queryText"
+                   (ionInput)="updateSchedule()"
+                   placeholder="Nhập tên đường hoặc số tuyến">
+    </ion-searchbar>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!--fix-->
+  <ion-list #scheduleList [hidden]="shownSessions === 0">
+
+    <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
+
+      <ion-item-divider sticky style="background-color: #488aff ">
+        <ion-label>
+          <h2 style="color:white">{{group.local}}</h2>
+          <!-- <h2 style="color:white"> {{translatedText}}</h2> -->
+        </ion-label>
+      </ion-item-divider>
+
+
+      <!-- <ion-item  *ngFor="let session of group.sessions" #item  [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
+
+      <button ion-item icon-start style="width: 70%; float: left;" (click)="goToSessionDetail(session)">
+        <h3>{{session.name}}</h3>
+        <p>Mã tuyến : {{session.id}}</p>
+      </button>
+
+      <button ion-item icon-end style="width: 15%; float: right;" color="favorite" (click)="addFavorite(item, session)" *ngIf="segment === 'all'">
+       <p> Yêu thích </p>
+      </button>
+      <button ion-item icon-end style="width: 15%; float: right;" color="danger" (click)="removeFavorite(item, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+       <p>Xóa</p>
+      </button>
+      </ion-item>
+       -->
+      <ion-item-sliding  *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
+   
+        <button ion-item  (click)="goToSessionDetail(session)">
+          <h3>{{session.name}}</h3>
+          <p>Mã tuyến: {{session.id}}</p>
+          <p>Thời gian di chuyển: {{session.travel_time}}</p>
+          <p>Khoảng cách giữa các tuyến: {{session.spacing}}</p>
+        </button>
+   
+        <ion-item-options>
+          <button ion-button  color="light" (click)="addFavorite(slidingItem, session)" *ngIf="segment === 'all'">
+            <!-- Yêu thích -->
+            <ion-icon style="font-size: 40px" color="star" name="star"></ion-icon>
+          </button>
+          <button ion-button color="light" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+            <!-- Xóa -->
+            <ion-icon style="font-size: 40px" color="danger" name="trash"></ion-icon>
+          </button>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+    </ion-item-group>
+
+  </ion-list>
+
+  <ion-list-header [hidden]="shownSessions > 0" *ngIf="segment === 'all'">
+     <p>Không có tuyến bus</p> 
+     <p>Vui lòng kiểm tra lại thông tin tìm kiếm</p>
+     <p></p>
+     <p>- Tìm kiếm theo tên đường</p>
+     <p>Ví dụ: Phan Văn Trị</p> 
+     <p>- Tìm kiếm theo số tuyến</p>
+     <p>Ví dụ: 01</p> 
+  </ion-list-header>
+
+
+  <ion-list-header [hidden]="shownSessions > 0" *ngIf="segment === 'favorites'">
+    
+    <p>Bạn chưa có tuyến xe buýt yêu thích nào. </p>
+    <div text-justify >Để thêm tuyến yêu thích hãy vuốt từ phải sang trái </div>
+      <div>tại tuyến xe bất kỳ ở trang chủ nhé !</div>
+</ion-list-header>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab><ion-icon name="share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="vimeo" (click)="openSocial('Vimeo',fab)"><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab color="instagram" (click)="openSocial('Instagram', fab)"><ion-icon name="logo-instagram"></ion-icon></button>
+      <button ion-fab color="google" (click)="openSocial('Google+', fab)"><ion-icon name="logo-googleplus"></ion-icon></button>
+      <button ion-fab color="twitter" (click)="openSocial('Twitter', fab)"><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab color="facebook" (click)="openSocial('Facebook', fab)"><ion-icon name="logo-facebook"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

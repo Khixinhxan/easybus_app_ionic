@@ -1,0 +1,142 @@
+<ion-split-pane>
+
+  <!-- logged out menu -->
+  <ion-menu id="loggedOutMenu" [content]="content">
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title >Easy Bus</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="outer-content">
+        <ion-list>
+            <ion-list-header>
+                <!-- <p style="border:#488aff solid" >Giới thiệu</p> -->
+                <p>Tài khoản</p>
+            </ion-list-header>
+      <div *ngIf="isLoggedIn; else facebookLogin">
+          <div style="align-content: center; align-items: center" >
+              <!-- <img src="{{pic_1}}" width="25px" height="25px" alt="{{name}}" /> -->
+              <!-- <h3>{{name}}</h3> -->
+              <img src="{{pic}}" width="50px" height="50px" alt="{{name}}" /> 
+             <h3> Xin Chào , {{name}}</h3>  
+          </div>
+         <p>
+          <button ion-button full icon-right (click)="logout()">
+            Đăng xuất
+          </button>
+        </p>
+      </div>
+      <ng-template #facebookLogin>
+        <button ion-button full icon-right (click)="facebookLoginFirebase()">
+          Facebook
+          <ion-icon name="logo-facebook"></ion-icon>
+        </button>
+      </ng-template>
+      </ion-list>
+
+      <!-- <ion-list>
+        <ion-list-header>
+            <p>Chia sẻ</p>
+        </ion-list-header>
+        <button ion-item menuClose  (click)="camera()">
+          <ion-icon item-start name="camera" ></ion-icon>
+          Chụp hình
+        </button>
+      </ion-list> -->
+
+      <ion-list>
+        <ion-list-header>
+            <!-- <p style="border:#488aff solid" >Giới thiệu</p> -->
+            <p>Điều hướng</p>
+        </ion-list-header>
+        <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+          {{p.title}}
+        </button>
+      </ion-list>
+
+      <!-- <ion-list>
+        <ion-list-header>
+            <p style="border:#488aff solid" >Thông tin</p>
+        </ion-list-header>
+        <button ion-item menuClose *ngFor="let p of loggedOutPages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+          {{p.title}}
+        </button>
+      </ion-list> -->
+
+      <ion-list>
+        <ion-list-header>
+            <!-- <p style="border:#488aff solid" >Giới thiệu</p> -->
+            <p>Giới thiệu</p>
+        </ion-list-header>
+        <button ion-item menuClose (click)="openTutorial()">
+          <ion-icon item-start name="star"></ion-icon>
+          Giới thiệu về dự án
+        </button>
+        <button ion-item menuClose (click)="openMember()">
+            <ion-icon item-start name="star-half"></ion-icon>
+            Thành viên nhóm
+          </button>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+
+  <!-- logged in menu -->
+  <!-- <ion-menu id="loggedInMenu" [content]="content">
+
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Easy Bus</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="outer-content">
+
+      <ion-list>
+        <ion-list-header>
+          <p style="border:#488aff solid" >Điều hướng</p> 
+            <p>Điều hướng</p>
+        </ion-list-header>
+        <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+          {{p.title}}
+        </button>
+      </ion-list> -->
+
+      <!-- <ion-list>
+        <ion-list-header>
+            <p style="border:#488aff solid" >Thông tin</p>
+        </ion-list-header>
+        <button ion-item menuClose *ngFor="let p of loggedInPages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+          {{p.title}}
+        </button>
+      </ion-list> -->
+
+      <!-- <ion-list>
+        <ion-list-header>
+            
+          <p>Giới thiệu</p>
+        </ion-list-header>
+        <button ion-item menuClose (click)="openTutorial()">
+          <ion-icon item-start [name]="star"></ion-icon>
+          Giới thiệu về đề tài
+        </button>
+
+        <button ion-item menuClose (click)="openMember()">
+            <ion-icon item-start name="star-half"></ion-icon>
+            Thành viên nhóm
+          </button>
+      </ion-list> -->
+     <!-- </ion-content>
+
+  </ion-menu> -->
+
+  <!-- main navigation -->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
+
+</ion-split-pane>

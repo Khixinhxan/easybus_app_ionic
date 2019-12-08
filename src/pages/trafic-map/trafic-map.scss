@@ -1,0 +1,31 @@
+page-trafic-map {
+    #map-trafic {
+        border-style: solid;
+        border-color: #488aff;
+        height: 100%;
+      }
+     
+} 
+.alertClass
+{
+  span.text_red
+  {
+    color:#f53d3d;
+    font-weight: bold;
+  }
+  span.text_yellow
+  {
+    color:orange;
+    font-weight: bold;
+  }
+  span.text_green
+  {
+    color:#32db64;
+    font-weight: bold;
+  }
+  span.text_gray
+  {
+    color:gray;
+    font-weight: bold;
+  }
+}

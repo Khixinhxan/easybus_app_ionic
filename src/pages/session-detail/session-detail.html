@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Easy Bus</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+   
+
+  <div *ngIf="session">
+    <h2 style="color: #488aff">{{session.name}}</h2>
+    <h2 style="color: #488aff" >Mã tuyến : {{session.location}}</h2>
+
+    <!-- <p>Tuyến đầu tiên bắt đầu : {{session.timeStart}}</p>
+    <p>Tuyến cuối cùng kết thúc : {{session.timeEnd}}</p> -->
+    <div style=" border: 1px solid  #488aff;border-radius: 2px;">
+    <div text-justify >
+    
+        <h5 style="color: #488aff"> &nbsp;Lượt đi&nbsp;<ion-icon name="return-right"></ion-icon></h5>
+        <!-- <p style="border:#488aff solid ; padding: 5px" >{{session.outward}}</p> -->
+        <p> &nbsp;{{session.outward}}</p>
+    </div>
+
+    <div text-justify >
+        
+        <h5 style="color: #488aff"> &nbsp;Lượt về&nbsp;<ion-icon name="return-left"></ion-icon></h5>
+        <!-- <p style="border:#488aff solid ; padding: 5px" >{{session.return}}</p> -->
+        <p> &nbsp;{{session.return}}</p>
+    </div>
+
+
+    <!-- <p style="border:#488aff solid ; padding: 5px">Loại hình hoạt động: {{session.type_of_activity}}</p>
+    <p style="border:#488aff solid ; padding: 5px">Khoảng cách: {{session.distance}}</p>
+    <p style="border:#488aff solid ; padding: 5px">Giá thường: {{session.ticket_allowance}}</p>
+    <p style="border:#488aff solid ; padding: 5px">Giá học sinh: {{session.subsidized_student}}</p>
+    <p style="border:#488aff solid ; padding: 5px">Giá theo tháng thường: {{session.ticket_price_month}}</p>
+    <p style="border:#488aff solid ; padding: 5px">Số chuyến trong ngày: {{session.number_of_trips}}</p>
+    <p style="border:#488aff solid ; padding: 5px">Thời gian chuyến: {{session.travel_time}}</p>
+    <p style="border:#488aff solid ; padding: 5px">Khoảng các mỗi chuyến: {{session.spacing}}</p> -->
+  
+    <h5 style="color: #488aff"> &nbsp;Loại hình hoạt động:</h5>
+    <p>  &nbsp;{{session.type_of_activity}}</p>
+    <h5 style="color: #488aff"> &nbsp;Khoảng cách: </h5>
+    <p> &nbsp;{{session.distance}}</p>
+    <h5 style="color: #488aff"> &nbsp;Giá thường: </h5>
+    <p> &nbsp;{{session.ticket_allowance}}</p>
+    <h5 style="color: #488aff"> &nbsp;Giá học sinh: </h5>
+    <p> &nbsp;{{session.subsidized_student}}</p>
+    <h5 style="color: #488aff"> &nbsp;Giá theo tháng thường: </h5>
+    <p> &nbsp;{{session.ticket_price_month}}</p>
+    <h5 style="color: #488aff"> &nbsp;Số chuyến trong ngày: </h5>
+    <p> &nbsp;{{session.number_of_trips}}</p>
+    <h5 style="color: #488aff"> &nbsp;Thời gian chuyến: </h5>
+    <p> &nbsp;{{session.travel_time}}</p>
+    <h5 style="color: #488aff"> &nbsp;Khoảng các mỗi chuyến: </h5>
+    <p> &nbsp;{{session.spacing}}</p>
+    
+  </div>
+</div>
+  <!-- <button  ion-button (click)="calculateAndDisplayRoute()">Hiện thị lượt đi</button>
+  <button  ion-button (click)="calculateAndDisplayRoute_return()" style="float: right;">Hiện thị lượt về</button>
+  <div  #map id="map-detail"></div> -->
+
+    <!-- <ion-fab top right #fab size="small" style="margin-top: 25px">
+      <button size="small" ion-fab><ion-icon size="small" name="camera" (click)="Camera()"></ion-icon></button>
+    </ion-fab> -->
+
+</ion-content>
+<ion-footer>
+</ion-footer>

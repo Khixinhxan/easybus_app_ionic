@@ -1,0 +1,56 @@
+<!-- <ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Trang chủ</ion-title>
+      </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+      
+    <ion-item>
+      <ion-input type="text" placeholder="Dữ liệu mã QR của tôi" [(ngModel)]="qrData">
+      </ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col class="signup-col">
+        <button ion-button class="submit-btn" full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Tạo Mã</button>
+        <button ion-button class="submit-btn" full icon-left (click)="scanCode()"><ion-icon name="qr-scanner"></ion-icon>Quét Mã</button>
+      </ion-col>
+    </ion-row>
+    <ion-card *ngIf="createdCode">
+      <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+      <ion-card-content>
+        <p>Mã QR: {{ createdCode }}</p>
+      </ion-card-content>
+    </ion-card>
+   
+    <ion-card *ngIf="scannedCode">
+      <ion-card-content>
+        Kết quả: {{ scannedCode }}
+        Giá : {{selectedProduct.price}}
+      </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="productFound">
+      <ion-card-header>
+        <h2>Price: $ {{selectedProduct.price}}</h2>
+      </ion-card-header> -->
+      <!-- <h1>
+          <button ion-button color="dark" full round (click)="scan()">Start Scan !!!</button>
+      </h1>
+      <ion-card *ngIf="productFound">
+          <ion-card-header>
+            <h2>Price: $ {{selectedProduct.price}}</h2>
+          </ion-card-header>
+          <ion-card-content>
+            <ul>
+              <li>{{selectedProduct.plu}}</li>
+              <li>{{selectedProduct.name}}</li>
+              <li>{{selectedProduct.desc}}</li>
+            </ul>
+          </ion-card-content> -->
+        <!-- </ion-card> 
+  
+  </ion-content>-->
+  <!-- <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav> --> -->

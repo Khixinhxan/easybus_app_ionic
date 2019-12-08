@@ -1,0 +1,76 @@
+<!-- <ion-toolbar color="primary">
+  <ion-searchbar [(ngModel)]="autocomplete_From.input_From" id="autocomplete_From.input_From" (ionInput)="updateSearchResults_From()" placeholder="From"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="autocomplete_To.input_To" id="autocomplete_To.input_To" (ionInput)="updateSearchResults_To()" placeholder="To"></ion-searchbar>
+</ion-toolbar> -->
+  
+  <ion-content>
+      
+      <div *ngIf="turnonGPS; else turnoffGPS">
+          <ion-searchbar #mySearchbar style="background-color: #488aff"  [(ngModel)]="autocomplete_From.input_From" id="autocomplete_From.input_From" (ionInput)="updateSearchResults_From()" placeholder="{{gps_address_2}}" ></ion-searchbar>
+        </div>
+    
+        <ng-template #turnoffGPS>
+            <ion-toolbar no-border-top>
+                <ion-buttons end> 
+                    <button ion-button item-right (click)="reverseGeoCoding()">
+                      <ion-icon name="pin" >
+                      </ion-icon>
+                    </button> 
+                  </ion-buttons>
+            <ion-searchbar #mySearchbar style="background-color: #488aff" [(ngModel)]="autocomplete_From.input_From" id="autocomplete_From.input_From" (ionInput)="updateSearchResults_From()" placeholder="Điểm đi" ></ion-searchbar>
+            </ion-toolbar>
+          </ng-template>
+        
+    <!-- <ion-searchbar style="background-color: #488aff" [(ngModel)]="autocomplete_From.input_From" id="autocomplete_From.input_From" (ionInput)="updateSearchResults_From()" placeholder="Điểm đi" ></ion-searchbar> -->
+    <ion-searchbar style="background-color: #488aff" [(ngModel)]="autocomplete_To.input_To" id="autocomplete_To.input_To" (ionInput)="updateSearchResults_To()" placeholder="Điểm đến"></ion-searchbar>
+    
+  <ion-list [hidden]="autocompleteItems_From.length == 0">
+      <ion-item *ngFor="let item of autocompleteItems_From" tappable (click)="selectSearchResult_From(item)">
+        {{ item.description }}
+      </ion-item>
+    </ion-list>
+  
+    <ion-list [hidden]="autocompleteItems_To.length == 0">
+      <ion-item *ngFor="let item of autocompleteItems_To" tappable (click)="selectSearchResult_To(item)">
+        {{ item.description }}
+    
+      </ion-item>
+    </ion-list> 
+
+  <div style="border:#488aff solid ;" *ngIf="hideinfor">
+    <ion-item-sliding style="padding-left: 1px;" *ngFor="let item of list_bus">
+      <button ion-item  (click)="goToSessionDetail(item)">
+        <h5>Tuyến: {{ item }}</h5>
+      </button>
+    </ion-item-sliding>
+    <h5>&nbsp;&nbsp; Khoảng cách: {{distance}}</h5>
+    <h5>&nbsp;&nbsp; Thời gian ước tính: {{duration}}</h5>
+   </div>
+    <!-- <div style="border:#488aff solid ;" *ngIf="hideinfor">
+    <div *ngFor="let item of list_bus" >
+      <button padding style="border: 2px solid #488aff;padding-left: 1px; background-color: white; font-size: 15px" (click)="goToSessionDetail(item)">Tuyến: {{ item }}</button>
+      <br/>
+    </div> -->
+    <!-- <h5 *ngFor="let item of list_bus">
+      <span>Tuyến {{ item }}</span>
+    </h5> -->
+    <!-- <h5>Khoảng cách: {{distance}}</h5>
+    <h5>Thời gian ước tính: {{duration}}</h5> -->
+    
+    <!-- <div [hidden]="list_bus.length == 0">
+      <p *ngFor="let item of list_bus">
+       Tuyến {{ item }}
+      </p>
+    </div>  -->
+    <!-- <div>{{gps_address_1}}</div>
+    <div>{{gps_address_2}}</div> -->
+    <div class="map" id="map-search"></div>
+
+    <!-- <ion-fab bottom right #fab style="padding-right: 5px">
+      <button ion-fab><ion-icon name="locate" (click)="openMaptraffic()"></ion-icon></button>
+    </ion-fab> -->
+  </ion-content>
+  <ion-footer>
+    <button  ion-button full (click)="calculateAndDisplayRoute()">Tìm</button>
+    <!-- <button ion-button full (click)="reverseGeoCoding()">a</button> -->
+  </ion-footer>
